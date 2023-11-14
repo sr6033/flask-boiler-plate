@@ -1,0 +1,12 @@
+FROM python:3.11
+RUN mkdir -p /flask-boiler-plate
+RUN mkdir -p /var/log/flask-boiler-plate/
+COPY . /flask-boiler-plate
+
+WORKDIR /flask-boiler-plate
+RUN chmod +x autostart-devapp.sh
+RUN pip install -r requirements.txt
+RUN py.test -v -W ignore::DeprecationWarning
+#RUN flask db upgrade
+CMD ["/flask-boiler-plate/autostart-devapp.sh"]
+

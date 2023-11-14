@@ -1,0 +1,12 @@
+FROM python:3.11
+RUN mkdir -p /flask-boiler-plate
+RUN mkdir -p /var/log/flask-boiler-plate/
+COPY . /flask-boiler-plate
+WORKDIR /flask-boiler-plate
+RUN chmod +x autostart-prodapp.sh
+RUN pip install -r requirements.txt
+COPY flask-boiler-plate.conf /etc/nginx/conf.d/flask-boiler-plate.conf
+#RUN flask db migrate
+#RUN flask db upgrade
+CMD ["/flask-boiler-plate/autostart-prodapp.sh"]
+

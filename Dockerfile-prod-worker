@@ -1,0 +1,9 @@
+FROM python:3.11
+RUN mkdir -p /flask-boiler-plate
+RUN mkdir -p /var/log/flask-boiler-plate/
+COPY . /flask-boiler-plate
+WORKDIR /flask-boiler-plate
+RUN pip install -r requirements.txt
+RUN chmod 755 autostart-prod-worker.sh
+#RUN flask db upgrade
+CMD ["/flask-boiler-plate/autostart-prod-worker.sh"]
